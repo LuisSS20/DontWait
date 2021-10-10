@@ -6,4 +6,10 @@ charcutería, etc... El problema principal es predecir el intervalo de tiempo
 entre cliente y cliente para que estos puedan seguir comprando en otras zonas,
 sin tener que perder tiempo en la cola.
 
+## Documentación adicional
+
+### Historias de usuarios
+
+Si quiere informarse acerca de las historias de usuario, hagalo [aquí](docs/usuarios.md).
+
 
