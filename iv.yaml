@@ -1,0 +1,6 @@
+lenguaje: python3
+entidad: src/cliente.py
+
+automatizar:
+  fichero: tasks.py
+  orden: invoke
