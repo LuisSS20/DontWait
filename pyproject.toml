@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "DontWait"
+version = "0.0.2"
+description = "Evita esperas innecesarias en las colas de comercios."
+authors = ["LuisSS20 <luissoriano@correo.ugr.es>"]
+license = "GPL-3.0"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+invoke = "^1.6.0"
+pylint = "^2.11.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.apy"
