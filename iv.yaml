@@ -1,3 +1,4 @@
+
 lenguaje: Python
 entidad:
   - src/cliente.py
@@ -8,4 +9,3 @@ entidad:
 automatizar:
   fichero: tasks.py
   orden: invoke
-  
