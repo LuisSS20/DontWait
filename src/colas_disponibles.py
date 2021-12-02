@@ -1,18 +1,19 @@
 import enum_tipo_cola as enum
+from src.turno import Turno
 
 
-class Turnos:
+class ColasDisponibles:
     """
     Clase que representa las colas disponibles en una tienda.
     """
 
-    def __init__(self, colas_disponibles=None):
+    def __init__(self, colas_disp=None):
         """
             Constructor de la clase Turnos.
 
             Parameters
             ----------
-            turnos_disponibles : dic{'Enum': list[]}
+            turnos_disp : dic{'Enum': list[]}
                 Diccionario que almacena los turnos, la clave es el tipo de
                 cola y el valor sera una lista con los turnos de dicho tipo.
 
@@ -21,11 +22,29 @@ class Turnos:
             ValueError
                 Si el enum pasado por no es uno válido.
         """
-        if turnos_disponibles != None:
-            for cola in turnos_disponibles:
+        if colas_disp is not None:
+            for cola in colas_disp:
                 self._check_valid_cola(cola)
+            self.colas_disponibles = colas_disp
         else:
-            self.turnos_disponibles
+            self.colas_disponibles = {}
+
+    def aniadir_nuevo_turno_a_cola(self, n_turno: Turno):
+        """
+            Añadir un nuevo turno a la cola correspondiente
+
+            Parameters
+            ----------
+            n_turno : Turno
+                Turno nuevo que se añadirá a la cola
+            Raises
+            ------
+            ValueError
+                Si el enum pasado por no es uno válido.
+        """
+        self._check_valid_enum(n_turno.tipo_cola)
+        for turno in self.colas_disponibles[n_turno.tipo_cola]:
+            turno.append(n_turno)
 
     def _check_valid_enum(self, enum_cola):
         """
