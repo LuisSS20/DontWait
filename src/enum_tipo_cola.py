@@ -1,7 +1,6 @@
-from enum import Enum
-
-
 """Este modulo se encargar del enum de tipos de colas"""
+
+from enum import Enum
 
 
 class TiposTurnos(Enum):
