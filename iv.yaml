@@ -1,5 +1,9 @@
-lenguaje: python3
-entidad: src/cliente.py
+lenguaje: Python
+entidad:
+  - src/cliente.py
+  - src/turno.py
+  - src/turnos.py
+  - src/colas_disponibles.py
 
 automatizar:
   fichero: tasks.py
