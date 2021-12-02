@@ -1,6 +1,9 @@
 from enum import Enum
 
 
+"""Este modulo se encargar del enum de tipos de colas"""
+
+
 class TiposTurnos(Enum):
     """
     Clase enum que representa los tipos de colas permitidos.
