@@ -1,3 +1,6 @@
+"""Modulo de la clase turno"""
+
+
 import enum_tipo_cola as enum
 
 
@@ -17,8 +20,8 @@ class Turno:
             enum_cola : Enum
                 Enum que indica a que cola pertenece el turno.
         """
-        self.id = id
-        self._check_valid_cola(enum_cola)
+        self.id_cola = id
+        self._check_valid_enum(enum_cola)
         self.tipo_cola = enum_cola
 
     def _check_valid_enum(self, enum_cola):
