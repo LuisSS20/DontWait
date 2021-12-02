@@ -1,3 +1,5 @@
+"""Este modulo se encarga de gestionar las colas de la tienda"""
+
 import enum_tipo_cola as enum
 from src.turno import Turno
 
@@ -24,7 +26,7 @@ class ColasDisponibles:
         """
         if colas_disp is not None:
             for cola in colas_disp:
-                self._check_valid_cola(cola)
+                self._check_valid_enum(cola)
             self.colas_disponibles = colas_disp
         else:
             self.colas_disponibles = {}
