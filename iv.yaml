@@ -8,3 +8,4 @@ entidad:
 automatizar:
   fichero: tasks.py
   orden: invoke
+
