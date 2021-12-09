@@ -46,3 +46,6 @@ Si quiere informarse acerca de las historias de usuario, hágalo [aquí](docs/us
 
 ### Elección de gestor de tareas y dependencias.
 Si quiere informarse acerca de las elecciones de gestor de tareas y depencias, hágalo [aquí]/(docs/objetivo-3.md).
+
+### Elección de herramienta para tests.
+Si quiere informarse acerca de las elecciones de la herramienta de tests, hágalo [aquí]/(docs/objetivo-4.md).
