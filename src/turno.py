@@ -23,6 +23,7 @@ class Turno:
         self.id_cola = id
         self._check_valid_enum(enum_cola)
         self.tipo_cola = enum_cola
+        self.tiempo_turno = 0
 
     def _check_valid_enum(self, enum_cola):
         """
