@@ -1,5 +1,7 @@
+from time import sleep
 import pytest
 import sys
+import random
 from assertpy import assert_that
 
 sys.path.append('./')
@@ -9,23 +11,33 @@ from src.turno import Turno
 from src.enum_tipo_cola import TiposTurnos
 
 
-colas_vacias = ColasDisponibles()
-colas_disp = {'Pescaderia': [1, 2, 3, 4, 5, 6],
-              'Carniceria': [],
-              'Fruteria': [1, 2, 3, 4, 5, 6]}
-
-
 def test_constructor_ColasDisponibles():
-    assert_that(ColasDisponibles(colas_disp))
+    assert_that(ColasDisponibles())
+
+colas = ColasDisponibles()
+
+for i in range(10):
+    colas.aniadir_turno('Pescaderia')
+    colas.aniadir_turno('Carniceria')
 
 
-colas = ColasDisponibles(colas_disp)
+def test_existen_colas():
+    """
+        Testeo que exista al menos un tipo de cola en una tienda
+    """
+    assert_that(colas.colas_disponibles).is_not_empty()
+
+def test_colas_no_vacias():
+    """
+        Testeo que exista al menos un tipo de cola en una tienda
+    """
+    for cola in colas.colas_disponibles.keys():
+        assert_that(cola).is_not_empty()
 
 
-def test_colas_vacias():
-    assert_that(colas_vacias.colas_disponibles).is_empty()
+def test_tiempo_colas():
+    for i in range(5):
+        colas.comienzo_atender_turno(colas.colas_disponibles['Pescaderia'])
+        sleep(random.uniform(4, 5))
+        colas.termino_atender_turno(colas.colas_disponibles['Pescaderia'])
 
-
-# def test_enum_valido():
-#     for tipo in colas_disp:
-#         assert_that(ColasDisponibles._check_valid_enum(tipo))
