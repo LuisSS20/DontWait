@@ -24,3 +24,13 @@ def check_sintax(c):
 
     print("Compruebo sintaxis")
     c.run("python3.9 -m compileall src")
+
+
+@task
+def tests(c):
+    """
+    Realización comprobación de tests
+    """
+
+    print("Ejecuto tests")
+    c.run("pytest")
