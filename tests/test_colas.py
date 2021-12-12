@@ -19,6 +19,7 @@ colas = ColasDisponibles()
 for i in range(10):
     colas.aniadir_turno('Pescaderia')
     colas.aniadir_turno('Carniceria')
+    colas.aniadir_turno('Fruteria')
 
 
 def test_existen_colas():
@@ -36,8 +37,35 @@ def test_colas_no_vacias():
 
 
 def test_tiempo_colas():
+    """
+        En un caso real el rendimiento se valora de la siguiente forma:
+            Bueno -> Si el tiempo de espera medio es inferior a 2 minutos.
+            Medio -> Si el tiempo de espera medio es superior a 2 minutos
+                     e inferior a 5 minutos.
+            Malo -> Si el tiempo de espera medio es superior a 5 minutos.
+
+        Como no puedo hacer que el test dure tanto, multiplicaré los
+        resultados por 100
+    """
     for i in range(5):
         colas.comienzo_atender_turno(colas.colas_disponibles['Pescaderia'])
-        sleep(random.uniform(4, 5))
+        sleep(random.uniform(0, 1))
         colas.termino_atender_turno(colas.colas_disponibles['Pescaderia'])
+
+        colas.comienzo_atender_turno(colas.colas_disponibles['Carniceria'])
+        sleep(random.uniform(2, 3))
+        colas.termino_atender_turno(colas.colas_disponibles['Carniceria'])
+
+        colas.comienzo_atender_turno(colas.colas_disponibles['Fruteria'])
+        sleep(random.uniform(3, 4))
+        colas.termino_atender_turno(colas.colas_disponibles['Fruteria'])
+
+        for tipo in colas.tiempo_medio_colas.keys():
+            colas.tiempo_medio_colas[tipo] *= 100
+
+        colas.calcular_rendimiento_colas()
+
+        assert_that(colas.rendimiento_colas['Pescaderia']).is_equal_to("Alto")
+        assert_that(colas.rendimiento_colas['Carniceria']).is_equal_to("Medio")
+        assert_that(colas.rendimiento_colas['Fruteria']).is_equal_to("Bajo")
 
