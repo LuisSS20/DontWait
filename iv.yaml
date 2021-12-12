@@ -9,3 +9,5 @@ automatizar:
   fichero: tasks.py
   orden: invoke
 
+
+test: tests/test_colas.py
