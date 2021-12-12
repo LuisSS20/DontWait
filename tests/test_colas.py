@@ -13,6 +13,12 @@ colas_vacias = ColasDisponibles()
 colas_disp = {'Pescaderia': [1, 2, 3, 4, 5, 6],
               'Carniceria': [],
               'Fruteria': [1, 2, 3, 4, 5, 6]}
+
+
+def test_constructor_ColasDisponibles():
+    assert_that(ColasDisponibles(colas_disp))
+
+
 colas = ColasDisponibles(colas_disp)
 
 
