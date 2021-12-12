@@ -10,7 +10,7 @@ class ColasDisponibles:
     Clase que representa las colas disponibles en una tienda.
     """
 
-    def __init__(self, colas_disp=None):
+    def __init__(self, colas_disp={}):
         """
             Constructor de la clase Turnos.
 
@@ -25,18 +25,15 @@ class ColasDisponibles:
             ValueError
                 Si el enum pasado por no es uno válido.
         """
-        self.colas_disponibles = {}
-        self.tiempo_medio_colas = {}
-        self.dict_turnos_atendidos = {}
+        self.dict_turnos_atendidos = {tipo.name: [] for tipo in enum.TiposTurnos}
+        self.colas_disponibles = {tipo.name: [] for tipo in enum.TiposTurnos}
+        self.tiempo_medio_colas = {tipo.name: 0 for tipo in enum.TiposTurnos}
 
-        if colas_disp is not None:
+        if colas_disp:
             for cola in colas_disp:
-                self._check_valid_enum(cola)
+                enum.TiposTurnos.check_valid_enum(cola)
                 if colas_disp[cola]:
-                    self.tiempo_medio_colas[cola] = colas_disp[cola]
-                else:
-                    self.tiempo_medio_colas[cola] = []
-            self.colas_disponibles = colas_disp
+                    self.colas_disponibles[cola] = colas_disp[cola]
 
     def aniadir_nuevo_turno_a_cola(self, n_turno: Turno):
         """
@@ -51,25 +48,28 @@ class ColasDisponibles:
             ValueError
                 Si el enum pasado por no es uno válido.
         """
-        self._check_valid_enum(n_turno.tipo_cola)
+        enum.TiposTurnos.check_valid_enum(n_turno.tipo_cola)
         for turno in self.colas_disponibles[n_turno.tipo_cola]:
             turno.append(n_turno)
 
-    def _check_valid_enum(self, enum_cola):
+    def aniadir_turno(self, tipo_cola):
         """
-            Validar el tipo de cola que se le esta pasando al enum.
+            Añadir un nuevo turno a la cola correspondiente pasando
+            solo el tipo de turno.
 
             Parameters
             ----------
-            enum_cola : Enum
+            tipo_cola : Enum
                 Enum que indica a que cola pertenece el turno.
             Raises
             ------
             ValueError
                 Si el enum pasado por no es uno válido.
         """
-        if not hasattr(enum.TiposTurnos, enum_cola):
-            raise TypeError('El tipo de cola no es válido')
+        enum.TiposTurnos.check_valid_enum(tipo_cola)
+        id_nuevo_turno = len(self.colas_disponibles[tipo_cola]) + 1
+        nuevo_turno = Turno(id_nuevo_turno, tipo_cola)
+        self.colas_disponibles[tipo_cola].append(nuevo_turno)
 
     def comienzo_atender_turno(self, cola):
         """
@@ -95,12 +95,14 @@ class ColasDisponibles:
                 eliminarlo de la cola.
         """
         tiempo_final = time.time()
+
         cola[0].tiempo_turno = tiempo_final - cola[0].tiempo_turno
         # Almaceno el turno que ha sido atentido
-        self.lista_turnos_atendidos.append(cola[0].copy())
+        tipo_cola = cola[0].tipo_turno
+        self.dict_turnos_atendidos[tipo_cola].append(cola[0])
         # Vuelvo a calcular el tiempo medio de espera
         self.calcular_tiempo_medio_por_turno(
-                    self.dict_turnos_atendidos[cola[0].tipo_cola])
+                    self.dict_turnos_atendidos[cola[0].tipo_turno])
         # Saco el turno de la cola correspodiente
         cola.pop()
 
@@ -120,4 +122,4 @@ class ColasDisponibles:
             sum_tiempo += turno.tiempo_turno
 
         # Agrego el tiempo medio en tiempo_medio_colas[tipo_cola]
-        self.tiempo_medio_colas[lista_turnos_atendidos[0].tipo_cola] = sum_tiempo / len(lista_turnos_atendidos)
+        self.tiempo_medio_colas[lista_turnos_atendidos[0].tipo_turno] = sum_tiempo / len(lista_turnos_atendidos)
