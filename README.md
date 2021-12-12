@@ -21,21 +21,25 @@ Al hacer esto, también estamos instalando Invoke, ya que lo hemos incluido en e
 
 
 ### Uso
-Para poder probarlo, primero tenemos que activar el entorno virtual haciendo uso de:
-```shell
- poetry shell
-```
-
-Para salir del entorno virtual, debemos escribir `exit` o pulsar `ctrl+d`.
 
 Podemos ver la lista de tareas definidas con:
 ```shell
 invoke --list
 ```
 
-Y para comprobar que la sintaxis del proyeto es correcta se hace con:
+Para poder comprobar la sintaxis usamos:
 ```shell
-invoke check
+ invoke check-sintax
+```
+
+Para poder comprobar buenas prácticas usamos:
+```shell
+invoke check-good-pratices
+```
+
+Para poder comprobar los test usamos:
+```shell
+invoke tests
 ```
 
 ## Documentación adicional
