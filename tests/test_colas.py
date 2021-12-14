@@ -11,32 +11,37 @@ from src.turno import Turno
 from src.enum_tipo_cola import TiposTurnos
 
 
+@pytest.fixture
+def mis_colas():
+    cola = ColasDisponibles()
+    for i in range(10):
+        cola.aniadir_turno('Pescaderia')
+        cola.aniadir_turno('Carniceria')
+        cola.aniadir_turno('Fruteria')
+
+    return cola
+
+
 def test_constructor_ColasDisponibles():
     assert_that(ColasDisponibles())
 
-colas = ColasDisponibles()
 
-for i in range(10):
-    colas.aniadir_turno('Pescaderia')
-    colas.aniadir_turno('Carniceria')
-    colas.aniadir_turno('Fruteria')
-
-
-def test_existen_colas():
+def test_existen_colas(mis_colas):
     """
         Testeo que exista al menos un tipo de cola en una tienda
     """
-    assert_that(colas.colas_disponibles).is_not_empty()
+    assert_that(mis_colas.colas_disponibles).is_not_empty()
 
-def test_colas_no_vacias():
+
+def test_colas_no_vacias(mis_colas):
     """
         Testeo que exista al menos un tipo de cola en una tienda
     """
-    for cola in colas.colas_disponibles.keys():
+    for cola in mis_colas.colas_disponibles.keys():
         assert_that(cola).is_not_empty()
 
 
-def test_tiempo_colas():
+def test_tiempo_colas(mis_colas):
     """
         En un caso real el rendimiento se valora de la siguiente forma:
             Bueno -> Si el tiempo de espera medio es inferior a 2 minutos.
@@ -48,24 +53,23 @@ def test_tiempo_colas():
         resultados por 100
     """
     for i in range(5):
-        colas.comienzo_atender_turno(colas.colas_disponibles['Pescaderia'])
+        mis_colas.comienzo_atender_turno(mis_colas.colas_disponibles['Pescaderia'])
         sleep(random.uniform(0, 1))
-        colas.termino_atender_turno(colas.colas_disponibles['Pescaderia'])
+        mis_colas.termino_atender_turno(mis_colas.colas_disponibles['Pescaderia'])
 
-        colas.comienzo_atender_turno(colas.colas_disponibles['Carniceria'])
+        mis_colas.comienzo_atender_turno(mis_colas.colas_disponibles['Carniceria'])
         sleep(random.uniform(2, 3))
-        colas.termino_atender_turno(colas.colas_disponibles['Carniceria'])
+        mis_colas.termino_atender_turno(mis_colas.colas_disponibles['Carniceria'])
 
-        colas.comienzo_atender_turno(colas.colas_disponibles['Fruteria'])
+        mis_colas.comienzo_atender_turno(mis_colas.colas_disponibles['Fruteria'])
         sleep(random.uniform(3, 4))
-        colas.termino_atender_turno(colas.colas_disponibles['Fruteria'])
+        mis_colas.termino_atender_turno(mis_colas.colas_disponibles['Fruteria'])
 
-        for tipo in colas.tiempo_medio_colas.keys():
-            colas.tiempo_medio_colas[tipo] *= 100
+        for tipo in mis_colas.tiempo_medio_colas.keys():
+            mis_colas.tiempo_medio_colas[tipo] *= 100
 
-        colas.calcular_rendimiento_colas()
+        mis_colas.calcular_rendimiento_colas()
 
-        assert_that(colas.rendimiento_colas['Pescaderia']).is_equal_to("Alto")
-        assert_that(colas.rendimiento_colas['Carniceria']).is_equal_to("Medio")
-        assert_that(colas.rendimiento_colas['Fruteria']).is_equal_to("Bajo")
-
+        assert_that(mis_colas.rendimiento_colas['Pescaderia']).is_equal_to("Alto")
+        assert_that(mis_colas.rendimiento_colas['Carniceria']).is_equal_to("Medio")
+        assert_that(mis_colas.rendimiento_colas['Fruteria']).is_equal_to("Bajo")
