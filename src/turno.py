@@ -37,8 +37,10 @@ class Turno:
         """
             Setter del id del turno.
         """
-        if isinstance(id, int):
-            self.id_turno = id
+        if not isinstance(id, int):
+            raise TypeError('El id no es un entero')
+
+        self.id_turno = id
 
     @property
     def tipo_turno(self):
@@ -53,4 +55,6 @@ class Turno:
             Setter del id del turno.
         """
         if enum.TiposTurnos.check_valid_enum(tipo_turno):
-            self.enum_turno = tipo_turno
+            raise TypeError('El tipo de cola no es válido')
+
+        self.enum_turno = tipo_turno
