@@ -42,6 +42,13 @@ Para poder comprobar los tests usamos:
 invoke test
 ```
 
+## Principios F.I.R.S.T
+En los tests desarrollados, he seguido los pasos F.I.R.S.T.
+- **Fast** -> Porque los test son rapidos, he tenido que modificar un test que usaba sleep para pasar este requisito.
+- **Independent** -> No dependen los unos de los otros.
+- **Repeatable** -> El resultado de los test son los mismos independientemente de donde se ejecuten.
+- **Self-validating** -> Se podrian ejecutar de manera automatica. 
+
 ## Documentación adicional
 
 ### Historias de usuarios.
