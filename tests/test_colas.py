@@ -50,23 +50,23 @@ def test_tiempo_colas(mis_colas):
             Malo -> Si el tiempo de espera medio es superior a 5 minutos.
 
         Como no puedo hacer que el test dure tanto, multiplicaré los
-        resultados por 100
+        resultados por 1000
     """
     for i in range(5):
         mis_colas.comienzo_atender_turno(mis_colas.colas_disponibles['Pescaderia'])
-        sleep(random.uniform(0, 1))
+        sleep(random.uniform(0, 0.004))
         mis_colas.termino_atender_turno(mis_colas.colas_disponibles['Pescaderia'])
 
         mis_colas.comienzo_atender_turno(mis_colas.colas_disponibles['Carniceria'])
-        sleep(random.uniform(2, 3))
+        sleep(random.uniform(0.02, 0.03))
         mis_colas.termino_atender_turno(mis_colas.colas_disponibles['Carniceria'])
 
         mis_colas.comienzo_atender_turno(mis_colas.colas_disponibles['Fruteria'])
-        sleep(random.uniform(3, 4))
+        sleep(random.uniform(0.03, 0.04))
         mis_colas.termino_atender_turno(mis_colas.colas_disponibles['Fruteria'])
 
         for tipo in mis_colas.tiempo_medio_colas.keys():
-            mis_colas.tiempo_medio_colas[tipo] *= 100
+            mis_colas.tiempo_medio_colas[tipo] *= 10000
 
         mis_colas.calcular_rendimiento_colas()
 
