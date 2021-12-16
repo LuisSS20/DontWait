@@ -37,9 +37,9 @@ Para poder comprobar buenas prácticas usamos:
 invoke check-good-pratices
 ```
 
-Para poder comprobar los test usamos:
+Para poder comprobar los tests usamos:
 ```shell
-invoke tests
+invoke test
 ```
 
 ## Documentación adicional

@@ -27,9 +27,9 @@ def check_sintax(c):
 
 
 @task
-def tests(c):
+def test(c):
     """
-    Realización comprobación de tests
+    Comprobación de tests
     """
 
     print("Ejecuto tests")
