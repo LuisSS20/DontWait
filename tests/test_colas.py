@@ -58,7 +58,7 @@ def test_tiempo_colas(mis_colas):
         mis_colas.termino_atender_turno(mis_colas.colas_disponibles['Pescaderia'])
 
         mis_colas.comienzo_atender_turno(mis_colas.colas_disponibles['Carniceria'])
-        sleep(random.uniform(0.02, 0.03))
+        sleep(random.uniform(0.025, 0.03))
         mis_colas.termino_atender_turno(mis_colas.colas_disponibles['Carniceria'])
 
         mis_colas.comienzo_atender_turno(mis_colas.colas_disponibles['Fruteria'])
