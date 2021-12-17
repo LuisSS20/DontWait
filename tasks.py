@@ -7,7 +7,7 @@ Para ejecutar una tarea usar: invoke <tarea>
 
 
 @task
-def check_best_pratices(c):
+def check_best_practices(c):
     """
     Comprueba buenas prácticas de los ficheros .py
     """
