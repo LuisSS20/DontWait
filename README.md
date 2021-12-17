@@ -29,12 +29,12 @@ invoke --list
 
 Para poder comprobar la sintaxis usamos:
 ```shell
- invoke check-sintax
+ invoke check
 ```
 
 Para poder comprobar buenas prácticas usamos:
 ```shell
-invoke check-good-pratices
+invoke check-best-pratices
 ```
 
 Para poder comprobar los tests usamos:
