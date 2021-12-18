@@ -107,11 +107,11 @@ class Cliente:
         """
         if not self._turno:
             raise TypeError('El cliente no tiene un turno asociado')
-        return self._turno.id
+        return self._turno
 
     @turno.setter
     def turno(self, turn):
         """
             Setter del nombre del cliente
         """
-        self._turno = Turno(turn.id, turn.tipo_turno)
+        self._turno = turn
