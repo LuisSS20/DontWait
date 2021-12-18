@@ -22,4 +22,4 @@ def test_constructor_cliente(mi_cliente):
 
 def test_get_id_turno_cliente(mi_cliente, mi_turno):
     mi_cliente.turno = mi_turno
-    assert_that(mi_cliente.turno).is_equal_to('1')
+    assert_that(mi_cliente.turno.id).is_equal_to('1')
