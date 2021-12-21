@@ -124,16 +124,3 @@ class ColasDisponibles:
 
         # Agrego el tiempo medio en tiempo_medio_colas[tipo_cola]
         self.tiempo_medio_colas[lista_turnos_atendidos[0].tipo_turno] = sum_tiempo / len(lista_turnos_atendidos)
-
-    def calcular_rendimiento_colas(self):
-        """
-            Se calcula el rendimiento de cada cola y se almacena
-            en rendimiento_colas.
-        """
-        for tipo in self.tiempo_medio_colas.keys():
-            if self.tiempo_medio_colas[tipo] > 300:
-                self.rendimiento_colas[tipo] = "Bajo"
-            elif self.tiempo_medio_colas[tipo] < 120:
-                self.rendimiento_colas[tipo] = "Alto"
-            else:
-                self.rendimiento_colas[tipo] = "Medio"

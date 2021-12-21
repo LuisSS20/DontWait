@@ -72,3 +72,16 @@ class Tienda:
         self._servicios.colas_disponibles[tipo_cola].append(nuevo_turno)
         cliente.turno = nuevo_turno
 
+    def calcular_rendimiento_colas(self):
+        """
+            Se calcula el rendimiento de cada cola y se almacena
+            en rendimiento_colas.
+        """
+        for tipo in self._servicios.tiempo_medio_colas.keys():
+            if self._servicios.tiempo_medio_colas[tipo] > 300:
+                self._servicios.rendimiento_colas[tipo] = "Bajo"
+            elif self._servicios.tiempo_medio_colas[tipo] < 120:
+                self._servicios.rendimiento_colas[tipo] = "Alto"
+            else:
+                self._servicios.rendimiento_colas[tipo] = "Medio"
+
