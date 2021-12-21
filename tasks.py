@@ -7,16 +7,6 @@ Para ejecutar una tarea usar: invoke <tarea>
 
 
 @task
-def check_best_practices(c):
-    """
-    Comprueba buenas prácticas de los ficheros .py
-    """
-
-    print("Compruebo buenas prácticas")
-    c.run("pylint src")
-
-
-@task
 def check(c):
     """
     Comprueba si la sintaxis de los ficheros .py son correctos
