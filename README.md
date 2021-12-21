@@ -32,11 +32,6 @@ Para poder comprobar la sintaxis usamos:
  invoke check
 ```
 
-Para poder comprobar buenas prácticas usamos:
-```shell
-invoke check-best-pratices
-```
-
 Para poder comprobar los tests usamos:
 ```shell
 invoke test
