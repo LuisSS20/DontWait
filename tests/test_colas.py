@@ -79,7 +79,7 @@ def test_colas_no_vacias(mis_colas):
         assert_that(cola).is_not_empty()
 
 
-def test_tiempo_colas(mis_colas):
+def test_tiempo_colas(mi_tienda):
     """
         En un caso real el rendimiento se valora de la siguiente forma:
             Bueno -> Si el tiempo de espera medio es inferior a 2 minutos.
@@ -90,27 +90,27 @@ def test_tiempo_colas(mis_colas):
         Como no puedo hacer que el test dure tanto, multiplicaré los
         resultados por 10000
     """
-    for i in range(5):
-        mis_colas.comienzo_atender_turno(mis_colas.colas_disponibles['Pescaderia'])
+    for i in range(2):
+        mi_tienda._servicios.comienzo_atender_turno(mi_tienda._servicios.colas_disponibles['Pescaderia'])
         sleep(random.uniform(0, 0.004))
-        mis_colas.termino_atender_turno(mis_colas.colas_disponibles['Pescaderia'])
+        mi_tienda._servicios.termino_atender_turno(mi_tienda._servicios.colas_disponibles['Pescaderia'])
 
-        mis_colas.comienzo_atender_turno(mis_colas.colas_disponibles['Carniceria'])
+        mi_tienda._servicios.comienzo_atender_turno(mi_tienda._servicios.colas_disponibles['Carniceria'])
         sleep(random.uniform(0.025, 0.03))
-        mis_colas.termino_atender_turno(mis_colas.colas_disponibles['Carniceria'])
+        mi_tienda._servicios.termino_atender_turno(mi_tienda._servicios.colas_disponibles['Carniceria'])
 
-        mis_colas.comienzo_atender_turno(mis_colas.colas_disponibles['Fruteria'])
+        mi_tienda._servicios.comienzo_atender_turno(mi_tienda._servicios.colas_disponibles['Fruteria'])
         sleep(random.uniform(0.03, 0.04))
-        mis_colas.termino_atender_turno(mis_colas.colas_disponibles['Fruteria'])
+        mi_tienda._servicios.termino_atender_turno(mi_tienda._servicios.colas_disponibles['Fruteria'])
 
-    for tipo in mis_colas.tiempo_medio_colas.keys():
-        mis_colas.tiempo_medio_colas[tipo] *= 10000
+    for tipo in mi_tienda._servicios.tiempo_medio_colas.keys():
+        mi_tienda._servicios.tiempo_medio_colas[tipo] *= 10000
 
-    mis_colas.calcular_rendimiento_colas()
+    mi_tienda.calcular_rendimiento_colas()
 
-    assert_that(mis_colas.rendimiento_colas['Pescaderia']).is_equal_to("Alto")
-    assert_that(mis_colas.rendimiento_colas['Carniceria']).is_equal_to("Medio")
-    assert_that(mis_colas.rendimiento_colas['Fruteria']).is_equal_to("Bajo")
+    assert_that(mi_tienda._servicios.rendimiento_colas['Pescaderia']).is_equal_to("Alto")
+    assert_that(mi_tienda._servicios.rendimiento_colas['Carniceria']).is_equal_to("Medio")
+    assert_that(mi_tienda._servicios.rendimiento_colas['Fruteria']).is_equal_to("Bajo")
 
 def test_posicion_y_tiempo_espera_cliente(mi_tienda):
     """
