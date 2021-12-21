@@ -8,6 +8,7 @@ Después de investigar por la red que herramientas eran las más populares para 
 cumplir el criterio de amplia comunidad, encontré: ** unittest, pytest y Robot**
 
 Mirando comparativas que herramienta era la más eficiente, descarté Robot.
+Ya que al investigar, encontré en el siguiente [artículo](https://www.fleekitsolutions.com/pytest-vs-robot-automation-testing/) una mención que dice lo siguiente: "With Pytest, Execution time for test cases is reduced to 30-40 percent as compared to the Robot Framework."
 
 Y para dedicirme entre Unittest u PyTest, me basé en el criterio de sintaxis sencilla.
 El primero de ellos a la hora de crear un test necesitaba: importar los modulos,
