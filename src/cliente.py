@@ -95,7 +95,7 @@ class Cliente:
     @correo.setter
     def correo(self, mail):
         """
-            Setter del nombre del cliente
+            Setter del correo del cliente
         """
         if self.check_email(mail):
             self._correo = mail
@@ -112,6 +112,6 @@ class Cliente:
     @turno.setter
     def turno(self, turn):
         """
-            Setter del nombre del cliente
+            Setter del turno del cliente
         """
         self._turno = turn
