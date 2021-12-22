@@ -26,23 +26,6 @@ class Turno:
         self.tiempo_turno = 0
 
     @property
-    def id(self):
-        """
-            Getter del id del turno.
-        """
-        return self.id_turno
-
-    @id.setter
-    def id(self, id):
-        """
-            Setter del id del turno.
-        """
-        if not isinstance(id, int):
-            raise TypeError('El id no es un entero')
-
-        self.id_turno = id
-
-    @property
     def tipo_turno(self):
         """
             Getter del tipo de turno.
