@@ -28,6 +28,6 @@ Como opciones tenía assertpy y grappa. Si bien podría usar unittest para utili
 Grappa la acabé descartando ya que me informé en internet y la sintaxis era más sencilla con assertpy.
 
 
-## Herramienta para tests: PyTest.
+## Test framework: PyTest.
 
-## Herramienta de aserciones: Assertpy.
+## Biblioteca de aserciones: Assertpy.
