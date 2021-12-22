@@ -5,6 +5,7 @@ from assertpy import assert_that
 sys.path.append('./')
 sys.path.append('./src/')
 from src.cliente import Cliente
+from src.tienda import Tienda
 from src.turno import Turno
 from src.enum_tipo_cola import TiposTurnos
 
@@ -23,3 +24,13 @@ def test_constructor_cliente(mi_cliente):
 def test_get_id_turno_cliente(mi_cliente, mi_turno):
     mi_cliente.turno = mi_turno
     assert_that(mi_cliente.turno.id).is_equal_to('1')
+
+def test_turno_none_una_vez_atendido(mi_cliente, mi_turno):
+    tienda = Tienda()
+    mi_cliente.turno = mi_turno
+    tienda._clientes = [mi_cliente]
+    tienda._servicios.aniadir_nuevo_turno_a_cola(mi_cliente.turno)
+    tienda._servicios.comienzo_atender_turno(tienda._servicios.colas_disponibles['Pescaderia'], 290)
+    tienda._servicios.termino_atender_turno(tienda._servicios.colas_disponibles['Pescaderia'], 290)
+    tienda.poner_turnos_ya_atendidos_none()
+    assert_that(mi_cliente._turno).is_equal_to(None)
