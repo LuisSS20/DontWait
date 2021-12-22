@@ -24,8 +24,8 @@ pytest-xdist.
 Como criterio a la hora de elegir una libreria de aserciones ha sido la simplicidad
 de la sintaxis. 
 
-Como opciones tenía assertpy y grappa. Grappa la acabé descartando ya que me informé
-en internet y la sintaxis era más sencilla con assertpy.
+Como opciones tenía assertpy y grappa. Si bien podría usar unittest para utilizar sus aserciones, yo no lo considero su uso adecuado, ya que está concebido para realizar test.
+Grappa la acabé descartando ya que me informé en internet y la sintaxis era más sencilla con assertpy.
 
 
 ## Herramienta para tests: PyTest.
