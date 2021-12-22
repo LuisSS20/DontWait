@@ -82,3 +82,10 @@ class Tienda:
             else:
                 self._servicios.rendimiento_colas[tipo] = "Medio"
 
+    def poner_turnos_ya_atendidos_none(self):
+        """
+        Establece los turnos de los clientes ya atendidos a nulos.
+        """
+        for cliente in self._clientes:
+            if cliente._turno in self._servicios.dict_turnos_atendidos[cliente._turno.tipo_turno]:
+                cliente.turno_atendido()
