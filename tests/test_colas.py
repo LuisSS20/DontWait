@@ -99,34 +99,28 @@ def test_tiempo_colas(mi_tienda):
     assert_that(mi_tienda._servicios.rendimiento_colas['Fruteria']).is_equal_to("Bajo")
 
 def test_posicion_y_tiempo_espera_cliente(mi_tienda):
-    mi_tienda._servicios.comienzo_atender_turno(mi_tienda._servicios.colas_disponibles['Pescaderia'], 0)
-    mi_tienda._servicios.termino_atender_turno(mi_tienda._servicios.colas_disponibles['Pescaderia'], 4)
 
-    for i in range(2):
-        mi_tienda._servicios.comienzo_atender_turno(mi_tienda._servicios.colas_disponibles['Fruteria'], 0)
-        mi_tienda._servicios.termino_atender_turno(mi_tienda._servicios.colas_disponibles['Fruteria'], 40)
-
-    for i in range(2):
-        mi_tienda._servicios.comienzo_atender_turno(mi_tienda._servicios.colas_disponibles['Carniceria'], 0)
-        mi_tienda._servicios.termino_atender_turno(mi_tienda._servicios.colas_disponibles['Carniceria'], 40)
-
-    # Aquí comprobamos la posición y tiempo de espera del cliente Nº2 que tambien debería de ser
-    # el Nº2 de la cola de la pescaderia ya que de los 3 turnos iniciales se ha atendido ya
-    # a un cliente. Por tanto el tiempo de espera del cliente Nº2 es el tiempo medio de
-    # la cola de pescadería multiplicado por el número de clientes que tiene por delante (1)
-    posicion, tiempo = mi_tienda.posicion_y_tiempo_para_atender_a_cliente(mi_tienda._clientes[2]._turno)
-    assert_that((posicion, tiempo)).is_equal_to((1, 4))
-
-    # Aquí comprobamos la posición y tiempo de espera del cliente Nº1 que tambien debería de ser
-    # el Nº1 de la cola de la fruteria ya que de los 3 turnos iniciales se han atendido ya
-    # a dos clientes. Por tanto el tiempo de espera del cliente Nº3 es el tiempo medio de
-    # la cola de fruteria multiplicado por el número de clientes que tiene por delante (0)
-    posicion, tiempo = mi_tienda.posicion_y_tiempo_para_atender_a_cliente(mi_tienda._clientes[1]._turno)
+    mi_tienda._servicios.tiempo_medio_colas['Carniceria'] = 40
+    # Aquí comprobamos la posición y tiempo de espera del cliente Nº6 que es el
+    # siguiente en ser atendido en la cola de la carniceria. Por tanto el
+    # tiempo de espera del cliente Nº6 es el tiempo medio de la cola
+    # multiplicado por el número de clientes que tiene por delante, en
+    # este caso al ser el siguiente en ser atendido es 0.
+    posicion, tiempo = mi_tienda.posicion_y_tiempo_para_atender_a_cliente(mi_tienda._clientes[6]._turno)
     assert_that((posicion, tiempo)).is_equal_to((0, 0))
+    
+    # Aquí comprobamos la posición y tiempo de espera del cliente Nº7 que es el
+    # segundo en la cola de la carniceria. Por tanto el
+    # tiempo de espera del cliente Nº7 es el tiempo medio de la cola
+    # multiplicado por el número de clientes que tiene por delante, en
+    # este caso al ser el siguiente en ser atendido es 1.
+    posicion, tiempo = mi_tienda.posicion_y_tiempo_para_atender_a_cliente(mi_tienda._clientes[7]._turno)
+    assert_that((posicion, tiempo)).is_equal_to((1, 40))
 
-    # Aquí comprobamos la posición y tiempo de espera del cliente Nº12 que debería de ser
-    # el Nº7 de la cola de la carniceria ya que de los 9 turnos iniciales se han atendido ya
-    # a dos clientes. Por tanto el tiempo de espera del cliente Nº12 es el tiempo medio de
-    # la cola de fruteria multiplicado por el número de clientes que tiene por delante (6)
-    posicion, tiempo = mi_tienda.posicion_y_tiempo_para_atender_a_cliente(mi_tienda._clientes[12]._turno)
-    assert_that((posicion, tiempo)).is_equal_to((6, 240))
+    # Aquí comprobamos la posición y tiempo de espera del cliente Nº8 que es el
+    # siguiente en ser atendido en la cola de la carniceria. Por tanto el
+    # tiempo de espera del cliente Nº8 es el tiempo medio de la cola
+    # multiplicado por el número de clientes que tiene por delante, en
+    # este caso al ser el siguiente en ser atendido es 2.
+    posicion, tiempo = mi_tienda.posicion_y_tiempo_para_atender_a_cliente(mi_tienda._clientes[8]._turno)
+    assert_that((posicion, tiempo)).is_equal_to((2, 80))
