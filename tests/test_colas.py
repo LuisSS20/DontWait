@@ -138,7 +138,7 @@ def test_posicion_y_tiempo_espera_cliente(mi_tienda):
     # el Nº2 de la cola de la pescaderia ya que de los 3 turnos iniciales se ha atendido ya
     # a un cliente. Por tanto el tiempo de espera del cliente Nº2 es el tiempo medio de
     # la cola de pescadería multiplicado por el número de clientes que tiene por delante (1)
-    posicion, tiempo = mi_tienda.posicion_y_tiempo_para_atender_a_cliente(mi_tienda._clientes[2])
+    posicion, tiempo = mi_tienda.posicion_y_tiempo_para_atender_a_cliente(mi_tienda._clientes[2]._turno)
     # Redondeo el tiempo para pasar test, ya que al variar milisegundos sería imposible pasar el test
     assert_that((posicion, round(tiempo))).is_equal_to((1, 4))
 
@@ -146,7 +146,7 @@ def test_posicion_y_tiempo_espera_cliente(mi_tienda):
     # el Nº1 de la cola de la fruteria ya que de los 3 turnos iniciales se han atendido ya
     # a dos clientes. Por tanto el tiempo de espera del cliente Nº3 es el tiempo medio de
     # la cola de fruteria multiplicado por el número de clientes que tiene por delante (0)
-    posicion, tiempo = mi_tienda.posicion_y_tiempo_para_atender_a_cliente(mi_tienda._clientes[1])
+    posicion, tiempo = mi_tienda.posicion_y_tiempo_para_atender_a_cliente(mi_tienda._clientes[1]._turno)
     # Redondeo el tiempo para pasar test, ya que al variar milisegundos sería imposible pasar el test
     assert_that((posicion, round(tiempo))).is_equal_to((0, 0))
 
@@ -154,6 +154,6 @@ def test_posicion_y_tiempo_espera_cliente(mi_tienda):
     # el Nº7 de la cola de la carniceria ya que de los 9 turnos iniciales se han atendido ya
     # a dos clientes. Por tanto el tiempo de espera del cliente Nº12 es el tiempo medio de
     # la cola de fruteria multiplicado por el número de clientes que tiene por delante (6)
-    posicion, tiempo = mi_tienda.posicion_y_tiempo_para_atender_a_cliente(mi_tienda._clientes[12])
+    posicion, tiempo = mi_tienda.posicion_y_tiempo_para_atender_a_cliente(mi_tienda._clientes[12]._turno)
     # Redondeo el tiempo para pasar test, ya que al variar milisegundos sería imposible pasar el test
     assert_that((posicion, round(tiempo))).is_equal_to((6, 240))
