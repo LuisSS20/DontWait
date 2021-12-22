@@ -49,9 +49,8 @@ class ColasDisponibles:
             ValueError
                 Si el enum pasado por no es uno válido.
         """
-        enum.TiposTurnos.check_valid_enum(n_turno.tipo_cola)
-        for turno in self.colas_disponibles[n_turno.tipo_cola]:
-            turno.append(n_turno)
+        enum.TiposTurnos.check_valid_enum(n_turno.tipo_turno)
+        self.colas_disponibles[n_turno.tipo_turno].append(n_turno)
 
     def aniadir_turno(self, tipo_cola):
         """
