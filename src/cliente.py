@@ -115,3 +115,10 @@ class Cliente:
             Setter del turno del cliente
         """
         self._turno = turn
+
+    def turno_atendido(self):
+        """
+        Una vez se ha atendido el turno del cliente, el turno se establece
+        como nulo, hasta que pida otro de nuevo.
+        """
+        self._turno = None
