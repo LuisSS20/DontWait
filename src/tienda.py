@@ -75,9 +75,9 @@ class Tienda:
             en rendimiento_colas.
         """
         for tipo in self._servicios.tiempo_medio_colas.keys():
-            if self._servicios.tiempo_medio_colas[tipo] > 300:
+            if self._servicios.tiempo_medio_colas[tipo] > 300.0:
                 self._servicios.rendimiento_colas[tipo] = "Bajo"
-            elif self._servicios.tiempo_medio_colas[tipo] < 120:
+            elif self._servicios.tiempo_medio_colas[tipo] < 120.0:
                 self._servicios.rendimiento_colas[tipo] = "Alto"
             else:
                 self._servicios.rendimiento_colas[tipo] = "Medio"

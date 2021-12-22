@@ -80,25 +80,17 @@ def test_tiempo_colas(mi_tienda):
             Medio -> Si el tiempo de espera medio es superior a 2 minutos
                      e inferior a 5 minutos.
             Malo -> Si el tiempo de espera medio es superior a 5 minutos.
-
-        Como no puedo hacer que el test dure tanto, multiplicaré los
-        resultados por 10000
     """
     for i in range(2):
-        mi_tienda._servicios.comienzo_atender_turno(mi_tienda._servicios.colas_disponibles['Pescaderia'])
-        sleep(random.uniform(0, 0.004))
-        mi_tienda._servicios.termino_atender_turno(mi_tienda._servicios.colas_disponibles['Pescaderia'])
+        mi_tienda._servicios.comienzo_atender_turno(mi_tienda._servicios.colas_disponibles['Pescaderia'], 290)
+        mi_tienda._servicios.termino_atender_turno(mi_tienda._servicios.colas_disponibles['Pescaderia'], 300)
 
-        mi_tienda._servicios.comienzo_atender_turno(mi_tienda._servicios.colas_disponibles['Carniceria'])
-        sleep(random.uniform(0.025, 0.03))
-        mi_tienda._servicios.termino_atender_turno(mi_tienda._servicios.colas_disponibles['Carniceria'])
 
-        mi_tienda._servicios.comienzo_atender_turno(mi_tienda._servicios.colas_disponibles['Fruteria'])
-        sleep(random.uniform(0.03, 0.04))
-        mi_tienda._servicios.termino_atender_turno(mi_tienda._servicios.colas_disponibles['Fruteria'])
+        mi_tienda._servicios.comienzo_atender_turno(mi_tienda._servicios.colas_disponibles['Carniceria'], 150)
+        mi_tienda._servicios.termino_atender_turno(mi_tienda._servicios.colas_disponibles['Carniceria'], 300)
 
-    for tipo in mi_tienda._servicios.tiempo_medio_colas.keys():
-        mi_tienda._servicios.tiempo_medio_colas[tipo] *= 10000
+        mi_tienda._servicios.comienzo_atender_turno(mi_tienda._servicios.colas_disponibles['Fruteria'], 0)
+        mi_tienda._servicios.termino_atender_turno(mi_tienda._servicios.colas_disponibles['Fruteria'], 400)
 
     mi_tienda.calcular_rendimiento_colas()
 
@@ -107,47 +99,34 @@ def test_tiempo_colas(mi_tienda):
     assert_that(mi_tienda._servicios.rendimiento_colas['Fruteria']).is_equal_to("Bajo")
 
 def test_posicion_y_tiempo_espera_cliente(mi_tienda):
-    """
-        Como no puedo hacer que el test dure tanto, multiplicaré los
-        tiempos por 100
-    """
-    mi_tienda._servicios.comienzo_atender_turno(mi_tienda._servicios.colas_disponibles['Pescaderia'])
-    sleep(0.04)
-    mi_tienda._servicios.termino_atender_turno(mi_tienda._servicios.colas_disponibles['Pescaderia'])
+    mi_tienda._servicios.comienzo_atender_turno(mi_tienda._servicios.colas_disponibles['Pescaderia'], 0)
+    mi_tienda._servicios.termino_atender_turno(mi_tienda._servicios.colas_disponibles['Pescaderia'], 4)
 
     for i in range(2):
-        mi_tienda._servicios.comienzo_atender_turno(mi_tienda._servicios.colas_disponibles['Fruteria'])
-        sleep(0.04)
-        mi_tienda._servicios.termino_atender_turno(mi_tienda._servicios.colas_disponibles['Fruteria'])
+        mi_tienda._servicios.comienzo_atender_turno(mi_tienda._servicios.colas_disponibles['Fruteria'], 0)
+        mi_tienda._servicios.termino_atender_turno(mi_tienda._servicios.colas_disponibles['Fruteria'], 40)
 
     for i in range(2):
-        mi_tienda._servicios.comienzo_atender_turno(mi_tienda._servicios.colas_disponibles['Carniceria'])
-        sleep(0.4)
-        mi_tienda._servicios.termino_atender_turno(mi_tienda._servicios.colas_disponibles['Carniceria'])
-
-    for tipo in mi_tienda._servicios.tiempo_medio_colas.keys():
-        mi_tienda._servicios.tiempo_medio_colas[tipo] *= 100
+        mi_tienda._servicios.comienzo_atender_turno(mi_tienda._servicios.colas_disponibles['Carniceria'], 0)
+        mi_tienda._servicios.termino_atender_turno(mi_tienda._servicios.colas_disponibles['Carniceria'], 40)
 
     # Aquí comprobamos la posición y tiempo de espera del cliente Nº2 que tambien debería de ser
     # el Nº2 de la cola de la pescaderia ya que de los 3 turnos iniciales se ha atendido ya
     # a un cliente. Por tanto el tiempo de espera del cliente Nº2 es el tiempo medio de
     # la cola de pescadería multiplicado por el número de clientes que tiene por delante (1)
     posicion, tiempo = mi_tienda.posicion_y_tiempo_para_atender_a_cliente(mi_tienda._clientes[2]._turno)
-    # Redondeo el tiempo para pasar test, ya que al variar milisegundos sería imposible pasar el test
-    assert_that((posicion, round(tiempo))).is_equal_to((1, 4))
+    assert_that((posicion, tiempo)).is_equal_to((1, 4))
 
     # Aquí comprobamos la posición y tiempo de espera del cliente Nº1 que tambien debería de ser
     # el Nº1 de la cola de la fruteria ya que de los 3 turnos iniciales se han atendido ya
     # a dos clientes. Por tanto el tiempo de espera del cliente Nº3 es el tiempo medio de
     # la cola de fruteria multiplicado por el número de clientes que tiene por delante (0)
     posicion, tiempo = mi_tienda.posicion_y_tiempo_para_atender_a_cliente(mi_tienda._clientes[1]._turno)
-    # Redondeo el tiempo para pasar test, ya que al variar milisegundos sería imposible pasar el test
-    assert_that((posicion, round(tiempo))).is_equal_to((0, 0))
+    assert_that((posicion, tiempo)).is_equal_to((0, 0))
 
     # Aquí comprobamos la posición y tiempo de espera del cliente Nº12 que debería de ser
     # el Nº7 de la cola de la carniceria ya que de los 9 turnos iniciales se han atendido ya
     # a dos clientes. Por tanto el tiempo de espera del cliente Nº12 es el tiempo medio de
     # la cola de fruteria multiplicado por el número de clientes que tiene por delante (6)
     posicion, tiempo = mi_tienda.posicion_y_tiempo_para_atender_a_cliente(mi_tienda._clientes[12]._turno)
-    # Redondeo el tiempo para pasar test, ya que al variar milisegundos sería imposible pasar el test
-    assert_that((posicion, round(tiempo))).is_equal_to((6, 240))
+    assert_that((posicion, tiempo)).is_equal_to((6, 240))
