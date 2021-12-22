@@ -15,22 +15,16 @@ from src.enum_tipo_cola import TiposTurnos
 
 @pytest.fixture
 def mis_clientes():
+
+    with open('tests/clientes.txt', 'r') as f:
+        lineas = f.readlines()
     clientes = []
-    clientes.append(Cliente('Angel', 'angel@gmail.com', '02/09/1995'))
-    clientes.append(Cliente('Daniel', 'daniel@gmail.com', '05/11/1995'))
-    clientes.append(Cliente('Maria', 'maria@gmail.com', '20/10/1995'))
-    clientes.append(Cliente('Ana', 'ana@gmail.com', '10/02/1995'))
-    clientes.append(Cliente('Alonso', 'alonso@gmail.com', '31/05/1995'))
-    clientes.append(Cliente('Natala', 'angel@gmail.com', '02/09/1995'))
-    clientes.append(Cliente('Rosa', 'daniel@gmail.com', '05/11/1995'))
-    clientes.append(Cliente('Adrian', 'maria@gmail.com', '20/10/1995'))
-    clientes.append(Cliente('Javier', 'ana@gmail.com', '10/02/1995'))
-    clientes.append(Cliente('Pedro', 'alonso@gmail.com', '31/05/1995'))
-    clientes.append(Cliente('Juan', 'angel@gmail.com', '02/09/1995'))
-    clientes.append(Cliente('Alberto', 'daniel@gmail.com', '05/11/1995'))
-    clientes.append(Cliente('Lucia', 'maria@gmail.com', '20/10/1995'))
-    clientes.append(Cliente('Estrella', 'ana@gmail.com', '10/02/1995'))
-    clientes.append(Cliente('Carlos', 'alonso@gmail.com', '31/05/1995'))
+
+    for cliente in lineas:
+        x = cliente.split(", ")
+        x[2] = x[2].strip('\n')
+        x[2] = x[2].strip(' ')
+        clientes.append(Cliente(x[0], x[1], x[2]))
 
     return clientes
 
