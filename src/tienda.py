@@ -30,37 +30,34 @@ class Tienda:
         """
         self._clientes.append(cliente)
 
-    def posicion_y_tiempo_para_atender_a_cliente(self, cliente):
+    def posicion_y_tiempo_para_atender_a_cliente(self, turno):
         """
             Añadir un nuevo turno a la cola correspondiente pasando
             solo el tipo de turno.
 
             Parameters
             ----------
-            cliente : Cliente
-                Cliente al cual se va a consultar tiempo restante aproximado
+            turno : Turno
+                Turno al cual se va a consultar tiempo restante aproximado
                 para ser atendido
             Raises
             ------
             ValueError
-                Si el cliente pasado por parametro no es uno válido.
+                Si el turno pasado por parametro no es uno válido.
         """
-        if cliente not in self._clientes:
-            raise TypeError('El cliente no se encuentra entre los \
-                             clientes de la tienda')
 
-        if cliente.turno in self._servicios.colas_disponibles[cliente.turno.tipo_turno]:
-            posicion = self._servicios.colas_disponibles[cliente.turno.tipo_turno].index(cliente.turno)
+        if turno in self._servicios.colas_disponibles[turno.tipo_turno]:
+            posicion = self._servicios.colas_disponibles[turno.tipo_turno].index(turno)
             if posicion == 0:
                 tiempo = 0
             elif posicion == 1:
-                tiempo = self._servicios.tiempo_medio_colas[cliente.turno.tipo_turno]
+                tiempo = self._servicios.tiempo_medio_colas[turno.tipo_turno]
             else:
-                tiempo = posicion * self._servicios.tiempo_medio_colas[cliente.turno.tipo_turno]
+                tiempo = posicion * self._servicios.tiempo_medio_colas[turno.tipo_turno]
 
             return posicion, tiempo
         else:
-            raise TypeError('El turno del cliente no existe en esa cola')
+            raise TypeError('El turno no es válido')
 
     def generar_turno_y_asignar_a_cliente(self, cliente, tipo_cola):
         """
