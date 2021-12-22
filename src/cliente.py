@@ -92,14 +92,6 @@ class Cliente:
         """
         return self._correo
 
-    @correo.setter
-    def correo(self, mail):
-        """
-            Setter del correo del cliente
-        """
-        if self.check_email(mail):
-            self._correo = mail
-
     @property
     def turno(self):
         """
