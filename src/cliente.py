@@ -1,30 +1,48 @@
-from datetime import datetime
-
-class Cliente():
-    # Clase cliente
-    nombre: str
-    correo: str
-    fechaNac: datetime
-    turnoActual: datetime
+"""Modulo de la clase cliente"""
 
 
-    def __init__(self, nombre,correo,fechaNac):
-        self.nombre = nombre
-        self.correo = correo
-        self.fechaNac = fechaNac
+import re
+from datetime import date, datetime
+from src.turno import Turno
 
 
-    def get_cliente(self):
-        cliente = {"Nombre",self.nombre,
-        "Correo",self.correo,
-        "FechaNac",self.fechaNac}
-        return cliente
+class Cliente:
+    """
+    Clase que representa un cliente.
+    """
 
-    def set_nombre_cliente(self, nombre):
-        self.nombre = nombre
+    def __init__(self, nombre):
+        """
+            Constructor de la clase Cliente.
 
-    def set_fechaNac(self,fecha):
-        self.fechaNac = fecha
+            Parameters
+            ----------
+            nombre : String
+                Nombre del cliente.
+        """
+        self._nombre = nombre
+        self._turno = None
 
-    def set_correo(self,correo):
-        self.correo = correo
+
+    @property
+    def turno(self):
+        """
+            Getter del turno del cliente
+        """
+        if not self._turno:
+            raise TypeError('El cliente no tiene un turno asociado')
+        return self._turno
+
+    @turno.setter
+    def turno(self, turn):
+        """
+            Setter del turno del cliente
+        """
+        self._turno = turn
+
+    def turno_atendido(self):
+        """
+        Una vez se ha atendido el turno del cliente, el turno se establece
+        como nulo, hasta que pida otro de nuevo.
+        """
+        self._turno = None

@@ -1,5 +1,6 @@
 """Este modulo se encarga de gestionar las colas de la tienda"""
 
+import time
 import enum_tipo_cola as enum
 from src.turno import Turno
 
@@ -9,7 +10,7 @@ class ColasDisponibles:
     Clase que representa las colas disponibles en una tienda.
     """
 
-    def __init__(self, colas_disp=None):
+    def __init__(self, colas_disp={}):
         """
             Constructor de la clase Turnos.
 
@@ -24,12 +25,16 @@ class ColasDisponibles:
             ValueError
                 Si el enum pasado por no es uno válido.
         """
-        if colas_disp is not None:
+        self.dict_turnos_atendidos = {tipo.name: [] for tipo in enum.TiposTurnos}
+        self.colas_disponibles = {tipo.name: [] for tipo in enum.TiposTurnos}
+        self.tiempo_medio_colas = {tipo.name: 0 for tipo in enum.TiposTurnos}
+        self.rendimiento_colas = {tipo.name: "" for tipo in enum.TiposTurnos}
+
+        if colas_disp:
             for cola in colas_disp:
-                self._check_valid_enum(cola)
-            self.colas_disponibles = colas_disp
-        else:
-            self.colas_disponibles = {}
+                enum.TiposTurnos.check_valid_enum(cola)
+                if colas_disp[cola]:
+                    self.colas_disponibles[cola] = colas_disp[cola]
 
     def aniadir_nuevo_turno_a_cola(self, n_turno: Turno):
         """
@@ -44,22 +49,78 @@ class ColasDisponibles:
             ValueError
                 Si el enum pasado por no es uno válido.
         """
-        self._check_valid_enum(n_turno.tipo_cola)
-        for turno in self.colas_disponibles[n_turno.tipo_cola]:
-            turno.append(n_turno)
+        enum.TiposTurnos.check_valid_enum(n_turno.tipo_turno)
+        self.colas_disponibles[n_turno.tipo_turno].append(n_turno)
 
-    def _check_valid_enum(self, enum_cola):
+    def aniadir_turno(self, tipo_cola):
         """
-            Validar el tipo de cola que se le esta pasando al enum.
+            Añadir un nuevo turno a la cola correspondiente pasando
+            solo el tipo de turno.
 
             Parameters
             ----------
-            enum_cola : Enum
+            tipo_cola : Enum
                 Enum que indica a que cola pertenece el turno.
             Raises
             ------
             ValueError
                 Si el enum pasado por no es uno válido.
         """
-        if enum_cola not in enum.TiposTurnos:
-            raise TypeError('El tipo de cola no es válido')
+        enum.TiposTurnos.check_valid_enum(tipo_cola)
+        id_nuevo_turno = len(self.colas_disponibles[tipo_cola]) + 1
+        nuevo_turno = Turno(id_nuevo_turno, tipo_cola)
+        self.colas_disponibles[tipo_cola].append(nuevo_turno)
+
+    def comienzo_atender_turno(self, cola, reloj=time.time()):
+        """
+            Se almacena la hora en la que se ha atendido el turno.
+
+            Parameters
+            ----------
+            cola : list[Turno]
+                Lista de turnos de la cual se coge el primer turno para
+                atenderlo.
+        """
+        cola[0].tiempo_turno = reloj
+
+    def termino_atender_turno(self, cola, reloj=time.time()):
+        """
+            Se elimina de la cola el turno que ha sido atendido.
+            Se calcula de nuevo el tiempo medio.
+
+            Parameters
+            ----------
+            cola : list[Turno]
+                Lista de turnos de la cual se coge el primer turno para
+                eliminarlo de la cola.
+        """
+        tiempo_final = reloj
+
+        cola[0].tiempo_turno = tiempo_final - cola[0].tiempo_turno
+
+        # Almaceno el turno que ha sido atentido
+        tipo_cola = cola[0].tipo_turno
+        self.dict_turnos_atendidos[tipo_cola].append(cola[0])
+        # Vuelvo a calcular el tiempo medio de espera
+        self.calcular_tiempo_medio_por_turno(
+                    self.dict_turnos_atendidos[cola[0].tipo_turno])
+        # Saco el turno de la cola correspondiente
+        cola.pop()
+
+    def calcular_tiempo_medio_por_turno(self,
+                                        lista_turnos_atendidos):
+        """
+            Se almacena la hora en la que se ha atendido el turno.
+
+            Parameters
+            ----------
+            cola : list[Turno]
+                Lista de turnos ya atendidos de la cual se extraen los tiempos
+                que han tardado en atenderse cada turno.
+        """
+        sum_tiempo = 0
+        for turno in lista_turnos_atendidos:
+            sum_tiempo += turno.tiempo_turno
+
+        # Agrego el tiempo medio en tiempo_medio_colas[tipo_cola]
+        self.tiempo_medio_colas[lista_turnos_atendidos[0].tipo_turno] = sum_tiempo / len(lista_turnos_atendidos)

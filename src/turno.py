@@ -20,22 +20,24 @@ class Turno:
             enum_cola : Enum
                 Enum que indica a que cola pertenece el turno.
         """
-        self.id_cola = id
-        self._check_valid_enum(enum_cola)
-        self.tipo_cola = enum_cola
+        self.id_turno = id
+        enum.TiposTurnos.check_valid_enum(enum_cola)
+        self.enum_turno = enum_cola
+        self.tiempo_turno = 0
 
-    def _check_valid_enum(self, enum_cola):
+    @property
+    def tipo_turno(self):
         """
-            Validar el tipo de cola que se le esta pasando al enum.
+            Getter del tipo de turno.
+        """
+        return self.enum_turno
 
-            Parameters
-            ----------
-            enum_cola : Enum
-                Enum que indica a que cola pertenece el turno.
-            Raises
-            ------
-            ValueError
-                Si el enum pasado por no es uno válido.
+    @tipo_turno.setter
+    def tipo_turno(self, tipo_turno):
         """
-        if enum_cola not in enum.TiposTurnos:
+            Setter del id del turno.
+        """
+        if enum.TiposTurnos.check_valid_enum(tipo_turno):
             raise TypeError('El tipo de cola no es válido')
+
+        self.enum_turno = tipo_turno
