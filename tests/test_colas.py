@@ -24,7 +24,7 @@ def mis_clientes():
         x = cliente.split(", ")
         x[2] = x[2].strip('\n')
         x[2] = x[2].strip(' ')
-        clientes.append(Cliente(x[0], x[1], x[2]))
+        clientes.append(Cliente(x[0]))
 
     return clientes
 

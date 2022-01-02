@@ -12,7 +12,7 @@ from src.enum_tipo_cola import TiposTurnos
 
 @pytest.fixture
 def mi_cliente():
-    return Cliente('Angel', 'angel@gmail.com', '02/09/1995')
+    return Cliente('Angel')
 
 def test_constructor_cliente(mi_cliente):
     assert_that(mi_cliente)
