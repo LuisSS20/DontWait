@@ -1,11 +1,12 @@
 name: Subo docker
 
-on: [push]
-  paths:
-    - 'pyproject.toml'
-    - 'poetry.lock'
-    - 'Dockerfile'
-    - .github/workflows/upload_dockerhub.yml
+on:
+  push:
+    paths:
+      - 'pyproject.toml'
+      - 'poetry.lock'
+      - 'Dockerfile'
+      - .github/workflows/upload_dockerhub.yml
 jobs:
   actualizacion:
     runs-on: ubuntu-latest
