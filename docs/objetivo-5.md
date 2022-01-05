@@ -6,7 +6,7 @@ Se necesitara un contenedor que pueda ejecutar código de python, que sea de tam
 ## Búsqueda de imagen
 Primero intenté usar imágenes de una distribución oficial, ubuntu 18.04 y debian. Al usar esta opción tenemos que instalar python3.9 en el dockerfile. Sin embargo el tamaño de estos contenedores eran muy pesados, asi que decidí buscar entre las imagenes oficiales del lenguaje Python.
 
-Partiendo de las siguientes imágenes oficiales de python que nos ofrece docker hub, escogí las dos siguientes, ya que informandome por internet, ví que ambas se ajustaban al criterio de tamaño reducido:
+Partiendo de las imágenes oficiales de python que nos ofrece docker hub, escogí las tres siguientes, ya que informandome por internet, ví que ambas se ajustaban al criterio de tamaño reducido:
 1. 3.9-slim-buster: Esta imagen contiene los paquetes mínimos necesarios para ejecutar python, por lo tanto es ideal.
 2. 3.9-slim-bullseye: Usa una versión más actualizada de Debian LTS.
 3. 3.9-alpine: Es la imagen más recomendada para no tener problemas de espacio, sin embargo puede causar problemas de compatibilidad (en mi caso me dió un error al intentar instalar poetry con una dependencia de una librería, lo arreglé usando RUN apk add gcc libc-dev libffi-dev bash y no descarté esta imagen al poder arreglar el problema).
