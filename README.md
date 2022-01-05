@@ -55,3 +55,6 @@ Si quiere informarse acerca de las elecciones de gestor de tareas y depencias, h
 
 ### Elección de herramienta para tests.
 Si quiere informarse acerca de las elecciones de la herramienta de tests, hágalo [aquí](docs/objetivo-4.md).
+
+### Documentación relativa al objetivo 5.
+Si quiere informarse acerca de la documentación del objetivo 5, hágalo [aquí](docs/objetivo-5.md).
