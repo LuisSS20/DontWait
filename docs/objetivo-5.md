@@ -49,4 +49,4 @@ Por lo tanto, la imagen que se ha usado es **slim-bullseye.**
 
 
 # Justificación uso de poetry config virtualenvs.create false
-Para que el build funcione correctamente se debe usar esta opción para que poetry NO instale las dependencias en su entorno virtual.
+Para que el build funcione correctamente se debe usar esta opción para que poetry NO instale las dependencias en su entorno virtual, ya que no necesitamos nuevos entornos virtuales en este contenedor que ejecuta una sola aplicación.
