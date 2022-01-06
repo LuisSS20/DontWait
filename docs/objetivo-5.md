@@ -4,7 +4,15 @@
 Se necesitara un contenedor que pueda ejecutar código de python, que sea de tamaño reducido, que no tarde mucho en construirse y que ejecute rápidamente los tests.
 
 ## Búsqueda de imagen
-Primero intenté usar imágenes de una distribución oficial, ubuntu 18.04 y debian. Al usar esta opción tenemos que instalar python3.9 en el dockerfile. Sin embargo el tamaño de estos contenedores eran muy pesados, asi que decidí buscar entre las imagenes oficiales del lenguaje Python.
+Primero intenté usar imágenes de una distribución oficial, ubuntu 18.04 y debian. Al usar esta opción tenemos que instalar python3.9 en el dockerfile. Sin embargo el tamaño de estos contenedores resultaban muy pesados:
+
+Ubuntu 18.04    ->     REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
+                       p_ubuntu18   latest    5cb646c1521b   22 seconds ago   619MB
+
+Debian          ->     REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+                       p_debian     latest    6a24869d6fe7   7 seconds ago   744MB
+
+Asi que decidí buscar entre las imagenes oficiales del lenguaje Python.
 
 Partiendo de las imágenes oficiales de python que nos ofrece docker hub, escogí las tres siguientes, ya que informandome por internet, ví que ambas se ajustaban al criterio de tamaño reducido:
 1. 3.9-slim-buster: Esta imagen contiene los paquetes mínimos necesarios para ejecutar python, por lo tanto es ideal.
