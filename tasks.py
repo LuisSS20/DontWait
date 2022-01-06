@@ -24,3 +24,13 @@ def test(c):
 
     print("Ejecuto tests")
     c.run("pytest")
+
+
+@task
+def docker_test(c):
+    """
+    Comprobación de tests ejecutando contenedor docker
+    """
+
+    print("Ejecuto contendor docker")
+    c.run('docker run -t -v "$(pwd):/app/test" luisss20/dontwait')

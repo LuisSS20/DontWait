@@ -37,6 +37,11 @@ Para poder comprobar los tests usamos:
 invoke test
 ```
 
+Para poder comprobar los tests ejecutando el contenedor docker:
+```shell
+invoke docker-test
+```
+
 ## Principios F.I.R.S.T
 En los tests desarrollados, he seguido los pasos F.I.R.S.T.
 - **Fast** -> Porque los test son rapidos, he tenido que modificar un test que usaba sleep para pasar este requisito.
