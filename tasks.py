@@ -32,5 +32,5 @@ def docker_test(c):
     Comprobación de tests ejecutando contenedor docker
     """
 
-    print("Ejecuto contendor docker")
+    print("Ejecuto contenedor docker")
     c.run('docker run -t -v "$(pwd):/app/test" luisss20/dontwait')
