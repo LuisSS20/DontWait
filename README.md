@@ -37,6 +37,11 @@ Para poder comprobar los tests usamos:
 invoke test
 ```
 
+Para poder comprobar los tests ejecutando el contenedor docker:
+```shell
+invoke docker-test
+```
+
 ## Principios F.I.R.S.T
 En los tests desarrollados, he seguido los pasos F.I.R.S.T.
 - **Fast** -> Porque los test son rapidos, he tenido que modificar un test que usaba sleep para pasar este requisito.
@@ -55,3 +60,6 @@ Si quiere informarse acerca de las elecciones de gestor de tareas y depencias, h
 
 ### Elección de herramienta para tests.
 Si quiere informarse acerca de las elecciones de la herramienta de tests, hágalo [aquí](docs/objetivo-4.md).
+
+### Documentación relativa al objetivo 5.
+Si quiere informarse acerca de la documentación del objetivo 5, hágalo [aquí](docs/objetivo-5.md).
