@@ -6,9 +6,12 @@ LABEL maintainer="LuisSS20 <luissoriano@correo.ugr.es>"
 RUN groupadd -r usuario && useradd -m -r -g usuario usuario
 USER usuario
 
-WORKDIR /app/test
+WORKDIR /app/
 
 COPY pyproject.toml poetry.lock tasks.py ./
+
+WORKDIR /app/test
+
 
 ENV PATH=$PATH:/home/usuario/.local/bin
 
