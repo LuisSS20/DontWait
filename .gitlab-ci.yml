@@ -4,7 +4,7 @@ stages:
 
 ejecutar-tests-docker:
   stage: test
-  image: luisss20/dontwait
+  image: python:3.9
   script:
     - echo "Ejecutando tests..."
     - docker run -t -v "$(pwd):/app/test" luisss20/dontwait
