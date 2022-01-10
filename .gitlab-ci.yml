@@ -1,0 +1,11 @@
+
+stages:
+  - test
+
+ejecutar-tests-docker:
+  stage: test
+  image:
+    repository: luisss20/dontwait
+  script:
+    - echo "Ejecutando tests..."
+    - docker run -t -v "$(pwd):/app/test" luisss20/dontwait
