@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version-python: ['3.10']
+        version-python: ['3.7','3.8','3.10']
     name: Version Python ${{ matrix.version-python }}
     steps:
       - name: Checkout
