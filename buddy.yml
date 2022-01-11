@@ -1,0 +1,12 @@
+- pipeline: "Pipeline tests"
+  on: "EVENT"
+  events:
+  - type: "PUSH"
+    refs:
+    - "refs/heads/*"
+  actions:
+  - action: "Ejecutar tests"
+    type: "BUILD"
+    docker_image_name: "luisss20/dontwait"
+    execute_commands:
+    - "docker run -t -v "$(pwd):/app/test" luisss20/dontwait"
