@@ -2,8 +2,9 @@
 stages:
   - test
 
-default:
-  image: luisss20/dontwait
+image:
+  name: luisss20/dontwait
+  entrypoint: [""]
 
 ejecutar-tests-docker:
   stage: test
