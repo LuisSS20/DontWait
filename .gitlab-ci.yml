@@ -2,9 +2,10 @@
 stages:
   - test
 
+default:
+  image: luisss20/dontwait
+
 ejecutar-tests-docker:
   stage: test
-  #La imagen usada será de  Ubuntu 20.04, Docker v20.10.11, Docker Compose v1.29.2
-  image: ubuntu-2004:202111-01
   script:
     - docker run -t -v "$(pwd):/app/test" luisss20/dontwait
