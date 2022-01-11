@@ -8,4 +8,4 @@ default:
 ejecutar-tests-docker:
   stage: test
   script:
-    - docker run -t -v "$(pwd):/app/test" luisss20/dontwait
+    - invoke test
