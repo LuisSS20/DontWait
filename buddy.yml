@@ -8,5 +8,6 @@
   - action: "Ejecutar tests"
     type: "BUILD"
     docker_image_name: "luisss20/dontwait"
+    docker_image_tag: "latest"
     execute_commands:
     - "docker run -t -v '$(pwd):/app/test' luisss20/dontwait"
