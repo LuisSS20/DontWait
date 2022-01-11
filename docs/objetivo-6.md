@@ -33,7 +33,7 @@ CircleCI es uno de los sistemas de integración más usados y más versátiles q
 ### [GitHub Actions](https://github.com/features/actions)
 GitHub nos ofrece una manera bastante sencilla de poder incorporar CI a nuestros repositorios. Con este sistema podemos determinar que se lancen nuestros tests, desplegar nuestra aplicación e incluso herramientas de revisión de código.
 **[x] Compatible con GitHub.** Sí, como puede ser obvio.
-**[x] Servicio gratuito.** Sí, es gratuito con cierta limitaciones. 
+**[x] Servicio gratuito.** Sí, es gratuito con ciertas limitaciones. Tienes 2000 minutos gratis todos los meses.
 **[x] No instalaciones.** Se realiza todo en la nube, así que no es necesaria realizar alguna instalación.
 
 **GitHub Actions es una opción viable para usar como un sistema de CI**
@@ -52,12 +52,12 @@ Bamboo es una herramienta comercial para la integración continua. Aunque se pue
 **[x] Servicio gratuito.** Si se solicita la licencia gratuita para proyectos de código abierto es gratuito. A su vez nos ofrece un trial de 30 días para pRobar la herramienta.
 **[] No instalaciones.** El servicio que ofrece Bamboo no es en la nube, se necesita tener instalado java e instalar Bamboo.
 
-**Bamboo queda descartado como sistema de CI, ya que no cumple el requisito de no instalaciones y, además, aunque parcialmente cubre el de servicio gratuito, esperar a la concesión de una licencia gratuito es inviable.**
+**Bamboo queda descartado como sistema de CI, ya que no cumple el requisito de no instalaciones y, además, aunque parcialmente cubre el de servicio gratuito, esperar a la concesión de una licencia gratuita es inviable.**
 
 ## Elección final
 De los sistemas de CI evaluados, nos quedamos con CircleCI, GitLab CI y GitHub Actions, ya que cumplen con los requisitos.
 A elección personal, he considerado usar **GitHub Actions** para poder comprobar la ejecución correcta del código usando diferentes versiones del lenguaje Pyhon, ya que es bastante sencillo de configurar y lo he usado anteriormente, por lo que estoy familiarizado con él.
-Entre CircleCI y GitLab CI, me quedo con **GitLab CI** ya que, aunque ambos son similares a la hora de configurarlos, me resulta más simple la sintaxis para la creación del fichero de configuración .yml. Al elegir **GitLab CI** me dí cuenta que es necesario introducir una tarjeta para poder verificar el usuario en GitLab CI, en mi caso, me informé y esto es para que los usuarios no abusen y creen multicuentas. En mi caso, introducí una tarjeta virtual para evitar cargos no autorizados y pude comprobar como te devuelven (un rato más tarde) el importe que para realizar esta verificación (1$).
+Entre CircleCI y GitLab CI, me quedo con **GitLab CI** ya que, aunque ambos son similares a la hora de configurarlos, me resulta más simple la sintaxis para la creación del fichero de configuración .yml. Al elegir **GitLab CI** me dí cuenta que es necesario introducir una tarjeta para poder verificar el usuario en GitLab CI, me informé y esto es para que los usuarios no abusen y creen multicuentas. En mi caso, introducí una tarjeta virtual para evitar cargos no autorizados y pude comprobar como te devuelven (un rato más tarde) el importe que cobran para realizar esta verificación (1$).
 
 ## Justificación versiones de python a testear
 
