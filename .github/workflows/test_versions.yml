@@ -22,4 +22,4 @@ jobs:
       - name: Instalamos dependencias
         run: pip install poetry && poetry install
       - name: Ejecuto tests
-        run: peotry run invoke test
+        run: poetry run invoke test
