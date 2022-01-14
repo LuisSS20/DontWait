@@ -1,0 +1,25 @@
+name: Testear versiones del lenguaje
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ejecutar-tests-versiones:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version-python: ['3.7','3.8','3.10']
+    name: Version Python ${{ matrix.version-python }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.version-python }}
+      - name: Instalamos dependencias
+        run: pip install poetry && poetry install
+      - name: Ejecuto tests
+        run: poetry run invoke test

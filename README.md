@@ -63,3 +63,6 @@ Si quiere informarse acerca de las elecciones de la herramienta de tests, hágal
 
 ### Documentación relativa al objetivo 5.
 Si quiere informarse acerca de la documentación del objetivo 5, hágalo [aquí](docs/objetivo-5.md).
+
+### Documentación relativa al objetivo 6.
+Si quiere informarse acerca de la documentación del objetivo 6, hágalo [aquí](docs/objetivo-6.md).

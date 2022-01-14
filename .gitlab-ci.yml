@@ -1,0 +1,12 @@
+
+stages:
+  - test
+
+image:
+  name: luisss20/dontwait
+  entrypoint: [""]
+
+ejecutar-tests-docker:
+  stage: test
+  script:
+    - invoke test
